@@ -11,12 +11,7 @@ public class App
         System.out.println(Arrays.toString(arr));
         System.out.println(suma(arr));
         quickSort(arr);
-
-
-
-
-
-
+        System.out.println(Arrays.toString(quickSort(arr)));
 
     }
 
@@ -33,17 +28,21 @@ public class App
         return tab[0] + suma(tab2);
     }
 
-    public static int[] sort(int[] array){
-        if(array.length < 2){
-            return array;
-        }
-        return array;
-    }
+
 
     public static int[] quickSort(int[] tablica){
-        if(tablica.length > 2){
+        if(tablica.length < 2){
             return tablica;
+        } else if (tablica.length == 2){
+            if (tablica[0] > tablica[1]){
+                    int temp = tablica[0];
+                    tablica[0] = tablica[1];
+                    tablica[1] = temp;
+                    return tablica;
+            }
         }
+
+
         int pivot = tablica[0];
         int ileMniejszych = 0;
         int ileWiekszych = 0;
@@ -56,7 +55,6 @@ public class App
                 ileWiekszych++;
             }
         }
-
         // Zapelnienie tablicy wiekszych
         int[] wieksze = new int[ileWiekszych];
         for (int i = 0; i < tablica.length; i++){
@@ -64,7 +62,6 @@ public class App
                 wieksze[i] = tablica[i];
             }
         }
-
         // Zapelnienie tablicy mniejszych
         int[] mniejsze = new int[ileMniejszych];
         for (int i = 0; i < tablica.length; i++){
@@ -72,12 +69,17 @@ public class App
                 mniejsze[i] = tablica[i];
             }
         }
-
         // Zlozenie tablic  MNIEJSZE + PIVOT + WIEKSZE
+        int[] merge = new int[tablica.length];
+        for(int i = 0; i < tablica.length - wieksze.length - 1; i++){
+            tablica[i] = mniejsze[i];
+        }
+        tablica[mniejsze.length - 1] = pivot;
+        for(int i = mniejsze.length; i < tablica.length; i++){
+            merge[i] = mniejsze[i];
+        }
 
-
-
-        return quickSort(tablica);
+        return quickSort(merge);
 
     }
 }
