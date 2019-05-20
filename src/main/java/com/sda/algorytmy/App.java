@@ -7,13 +7,13 @@ public class App
 {
     public static void main( String[] args ) {
 
-        int[] arr = {2, 4, 6, 2, 2};
+        int[] arr = {2, 4, 6, 8, 3, 1};
         System.out.println(Arrays.toString(arr));
         System.out.println(suma(arr));
         //quickSort(arr);
-        //System.out.println(Arrays.toString(quickSort(arr)));
-        int[] tab = {3, 1};
-        System.out.println(Arrays.toString(quickSort(tab)));
+        System.out.println(Arrays.toString(quickSort(arr)));
+//        int[] tab = {3, 1};
+//        System.out.println(Arrays.toString(quickSort(tab)));
 
 
     }
@@ -59,19 +59,23 @@ public class App
             }
         }
         // Zapelnienie tablicy wiekszych
+        int i = 0;
         int[] wieksze = new int[ileWiekszych];
-        for (int i = 0; i < tablica.length; i++){
-            if (tablica[i] > pivot){
-                wieksze[i] = tablica[i];
+        for (int el : tablica){
+            if (el > pivot){
+                wieksze[i] = el;
+                i++;
             }
         }
         quickSort(wieksze);
 
         // Zapelnienie tablicy mniejszych
+        int j = 0;
         int[] mniejsze = new int[ileMniejszych];
-        for (int i = 0; i < tablica.length; i++){
-            if (tablica[i] > pivot){
-                mniejsze[i] = tablica[i];
+        for (int el : tablica){
+            if (el > pivot){
+                wieksze[j] = el;
+                j++;
             }
         }
         quickSort(mniejsze);
@@ -81,7 +85,7 @@ public class App
         int[] merge = new int[tablica.length];
 
         System.arraycopy(mniejsze, 0, merge, 0, mniejsze.length);
-        merge[tablica.length] = pivot;
+        merge[mniejsze.length] = pivot;
         System.arraycopy(wieksze, 0, merge, mniejsze.length + 1, wieksze.length);
 
         return merge;
