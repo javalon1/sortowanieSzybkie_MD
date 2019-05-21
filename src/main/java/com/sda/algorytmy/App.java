@@ -2,16 +2,25 @@ package com.sda.algorytmy;
 
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class App
 {
     public static void main( String[] args ) {
 
+        Random random = new Random();
+
         int[] arr = {2, 4, 6, 8, 3, 1, 10, 5, 7};
-        System.out.println(Arrays.toString(arr));
-        System.out.println(Arrays.toString(quickSort(arr)));
-        int[] tab = {3, 1, };
-        System.out.println(Arrays.toString(quickSort(tab)));
+
+        int[]tablica = new int[51];
+        for (int i = 0; i < tablica.length; i++) {
+            tablica[i] = random.nextInt(10000 + 1) - 5000;
+        }
+
+        System.out.println(Arrays.toString(tablica));
+        System.out.print(Arrays.toString(quickSort(tablica)));
+//        int[] tab = {3, 1};
+//        System.out.println(Arrays.toString(quickSort(tab)));
 
     }
 
